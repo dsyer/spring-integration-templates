@@ -15,28 +15,27 @@ This will result in *3 artifacts* being created under **target/out**:
 * org.springframework.integration.sts.templates_1.0.0.M2.jar
 * si-template-1.0.0.M2.zip
 
-In order to deploy to STS you have 2 options:
+In order to deploy to STS you have 2 options.  Option 2 is good for developing/changing the Eclipse STS template, and Option 1 is 
+better for just installing a pre-built jar package.
 
 1. drop the Eclipse plugin **org.springframework.integration.sts.templates_1.0.0.M2.jar**
    to your Eclipse STS **dropins/plugins folder**. Restart Eclipse STS.
 
-2. Option 2 is good for developing/changing the Eclipse STS template.
-
-Take the **si-template-1.0.0.M2.zip** jar file and unpack it in your Eclipse workspace in a directory called
+2. Take the **si-template-1.0.0.M2.zip** jar file and unpack it in your Eclipse workspace in a directory called
 **.metadata/.sts/content/${pom.artifactId}-${pom.version}**. Then add or edit the
 template descriptor in **.metadata/.plugins/com.springsource.sts.content.core/content.xml**
 so it has this form:
 
-	<descriptor id="${pom.artifactId}" kind="template" local="true"
-	      name="${pom.name}" size="0" version="${pom.version}">
-	   <description>...</description>
-	</descriptor>
+        <descriptor id="${pom.artifactId}" kind="template" local="true"
+            name="${pom.name}" size="0" version="${pom.version}">
+            <description>...</description>
+        </descriptor>
 
-Make sure there are no conflicting templates with the same name and a different version.
+    Make sure there are no conflicting templates with the same name and a different version.
 
 ## ¡IMPORTANTE!
 
-A few file in the template project require absolute URLs. By default the pom is setup to use:
+A few files in the template project require absolute URLs. By default the pom is setup to use:
 
 	<base.location>file://${project.parent.basedir}/target/out</base.location>
 
